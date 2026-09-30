@@ -1,0 +1,367 @@
+:root {
+    --papel: #FBFCF8;
+    --quadriculado: #C9DCEB;
+    --tinta: #1F3A8A;
+    --vermelho: #C8322B;
+    --marca-texto: #FFE45C;
+    --fita: #E9DFC0;
+
+    --manuscrita: "Kalam", "Comic Sans MS", cursive;
+    --texto: "Atkinson Hyperlegible", Verdana, sans-serif;
+
+    /* lado de um quadradinho; a entrelinha do texto acompanha */
+    --q: 1.5rem;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: var(--tinta);
+    background-color: var(--papel);
+    background-image:
+        linear-gradient(var(--quadriculado) 1px, transparent 1px),
+        linear-gradient(90deg, var(--quadriculado) 1px, transparent 1px);
+    background-size: var(--q) var(--q);
+    font-family: var(--texto);
+    font-size: 1.0625rem;
+    line-height: var(--q);
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--vermelho);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+.pagina {
+    position: relative;
+    max-width: 72rem;
+    padding: calc(var(--q) * 2) 1rem calc(var(--q) * 3);
+}
+
+.so-leitor {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* Capa */
+
+.capa {
+    display: grid;
+    gap: var(--q);
+    align-items: center;
+}
+
+h1 {
+    font-family: var(--manuscrita);
+    font-size: clamp(2.5rem, 9vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+}
+
+.anotacao {
+    margin-top: calc(var(--q) / 2);
+    font-family: var(--manuscrita);
+    font-size: 1.375rem;
+    line-height: var(--q);
+    color: var(--vermelho);
+}
+
+.apresentacao {
+    margin-top: var(--q);
+    max-width: 34rem;
+}
+
+.retrato {
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin-bottom: var(--q);
+    object-fit: cover;
+    border: 0.4rem solid #fff;
+    box-shadow: 0 1px 3px rgb(31 58 138 / 0.3);
+    rotate: -2deg;
+}
+
+.esquema {
+    width: 100%;
+    max-width: 30rem;
+    height: auto;
+    overflow: visible;
+}
+
+.esquema path {
+    fill: none;
+    stroke: var(--tinta);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.esquema .fino {
+    stroke-width: 1.4;
+}
+
+.esquema .trajetoria {
+    stroke-width: 2.6;
+}
+
+.esquema .guia {
+    stroke-width: 1.2;
+    stroke-dasharray: 5 6;
+}
+
+.esquema .garrafa {
+    fill: var(--papel);
+}
+
+.esquema .vermelho,
+.esquema .vermelho path {
+    stroke: var(--vermelho);
+    stroke-width: 2.6;
+}
+
+.rotulos text {
+    font-family: var(--manuscrita);
+    font-size: 17px;
+    fill: var(--tinta);
+}
+
+.rotulos text.vermelho {
+    fill: var(--vermelho);
+    stroke: none;
+    font-weight: 700;
+}
+
+/* O esquema se desenha uma única vez ao abrir a página. */
+@media (prefers-reduced-motion: no-preference) {
+    .traco {
+        stroke-dasharray: 1;
+        animation: desenhar 0.5s ease-out var(--atraso, 0s) both;
+    }
+
+    .trajetoria {
+        animation-duration: 1.6s;
+        animation-delay: 0.5s;
+        animation-timing-function: ease-in-out;
+    }
+
+    .surge {
+        animation: surgir 0.5s ease-out 1.9s both;
+    }
+}
+
+@keyframes desenhar {
+    from {
+        stroke-dashoffset: 1;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes surgir {
+    from {
+        opacity: 0;
+    }
+}
+
+/* Galeria */
+
+h2 {
+    font-family: var(--manuscrita);
+    font-size: 2rem;
+    line-height: calc(var(--q) * 2);
+}
+
+main {
+    margin-top: calc(var(--q) * 3);
+}
+
+.aviso {
+    margin-top: var(--q);
+    max-width: 34rem;
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: calc(var(--q) * 2.5) calc(var(--q) * 2);
+    align-items: start;
+    margin: calc(var(--q) * 2) 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.aula-link {
+    display: block;
+    text-decoration: none;
+    rotate: -1.2deg;
+    transition: rotate 0.2s ease-out;
+}
+
+.aula:nth-child(even) .aula-link {
+    rotate: 1deg;
+}
+
+.aula:nth-child(3n) .aula-link {
+    rotate: -0.4deg;
+}
+
+.aula-foto {
+    position: relative;
+    display: block;
+    padding: 0.5rem;
+    background: #fff;
+    box-shadow: 0 1px 2px rgb(31 58 138 / 0.25), 0 6px 14px -8px rgb(31 58 138 / 0.45);
+}
+
+.aula-foto::before {
+    content: "";
+    position: absolute;
+    top: -0.8rem;
+    left: 50%;
+    width: 6rem;
+    height: 1.6rem;
+    translate: -50% 0;
+    rotate: -3deg;
+    background: var(--fita);
+    opacity: 0.88;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 0.12);
+}
+
+.aula:nth-child(even) .aula-foto::before {
+    rotate: 2.5deg;
+}
+
+.aula-foto img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 26rem;
+    object-fit: cover;
+}
+
+.aula-titulo {
+    margin-top: var(--q);
+    font-family: var(--manuscrita);
+    font-size: 1.5rem;
+    line-height: calc(var(--q) * 1.25);
+}
+
+.aula-titulo span {
+    background: linear-gradient(var(--marca-texto), var(--marca-texto)) no-repeat 0 85% / 0% 55%;
+    transition: background-size 0.25s ease-out;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+.aula-descricao {
+    margin-top: calc(var(--q) / 4);
+}
+
+.aula-assistir {
+    display: inline-block;
+    margin-top: calc(var(--q) / 2);
+    font-family: var(--manuscrita);
+    font-size: 1.125rem;
+    color: var(--vermelho);
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
+}
+
+.aula-link:hover,
+.aula-link:focus-visible,
+.aula:nth-child(n) .aula-link:hover,
+.aula:nth-child(n) .aula-link:focus-visible {
+    rotate: 0deg;
+}
+
+.aula-link:hover .aula-titulo span,
+.aula-link:focus-visible .aula-titulo span {
+    background-size: 100% 55%;
+}
+
+/* Contato */
+
+.rodape {
+    margin-top: calc(var(--q) * 4);
+    padding-top: var(--q);
+    border-top: 2px solid var(--vermelho);
+    max-width: 34rem;
+}
+
+.rodape h2 {
+    font-size: 1.5rem;
+    line-height: var(--q);
+}
+
+.rodape p {
+    margin-top: calc(var(--q) / 2);
+    overflow-wrap: anywhere;
+}
+
+.rodape a {
+    font-weight: 700;
+    text-decoration-color: var(--vermelho);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+}
+
+.rodape a:hover {
+    background: var(--marca-texto);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .aula-link,
+    .aula-titulo span {
+        transition: none;
+    }
+}
+
+/* Telas largas: linha de margem vermelha e capa em duas colunas */
+@media (min-width: 48rem) {
+    .pagina {
+        padding: calc(var(--q) * 3) calc(var(--q) * 2) calc(var(--q) * 4) calc(var(--q) * 5);
+    }
+
+    .pagina::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: calc(var(--q) * 3);
+        width: 2px;
+        background: var(--vermelho);
+        opacity: 0.7;
+    }
+
+    .capa {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: calc(var(--q) * 2);
+    }
+}

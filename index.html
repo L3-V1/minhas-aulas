@@ -1,39 +1,96 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Aulas e experimentos de Física do professor Sidnei Ribeiro de Moraes, da E. E. Prof. Primo Ferreira.">
+    <link rel="icon" href="data:,">
+    <title>Sidnei Ribeiro de Moraes: aulas de Física</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Kalam:wght@400;700&display=swap"
         rel="stylesheet">
-    <title>Projetos Educacionais</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="dados/aulas.js"></script>
+    <script defer src="js/main.js"></script>
 </head>
 
 <body>
-    <header>MINHAS AULAS</header>
+    <div class="pagina">
+        <header class="capa">
+            <div class="capa-texto">
+                <div id="retrato"></div>
+                <h1 id="nome"></h1>
+                <p class="anotacao" id="escola"></p>
+                <p class="apresentacao" id="apresentacao"></p>
+            </div>
 
-       <section class="categoria">
-        <h1>BOAS PRÁTICAS DE ENSINO</h1>
-        <div class="categoria-videos">
-            <a href="https://drive.google.com/file/d/185aLTzXqZc9Dd6Y5UhncmE0gQ7Gi3UG8/view" target="_blank" title="Clique para assistir o vídeo">
-              <img src="1751822227568.jpg" alt="ESCOLA DE TEMPO INTEGRAL" class="video-thumbnail"/>
-            </a>
-            <a href="https://drive.google.com/file/d/1LcGt3XrCm4mw_pbrFlLkYSkCIwSQjoTq/view?usp=sharing" target="_blank" title="Clique para assistir o vídeo">
-                <img src="1751822232063.jpg" alt="ITINERÁRIO CIÊNCIA EM AÇÃO" class="video-thumbnail"/>
-            </a>
-            <a href="https://drive.google.com/file/d/1Nb4jNF-Yb5koiqbzGUjLBmG-4yZewrLX/view" target="_blank" title="Clique para assistir o vídeo">
-                <img src="optica da visão.jpg" alt="SEMINÁRIO DE EXPERIMENTOS" class="video-thumbnail" />
-            </a>
-            <a href="https://drive.google.com/file/d/1zkFLlk-BNOG09WLWVAHcPD1wxY38NTa1/view" target="_blank" title="Clique para assistir o vídeo">
-                <img src="fonte de heron.jpg" alt="EXPERIMENTOS DE BAIXO CUSTO" class="video-thumbnail" />
-            </a>
-            <a href="https://drive.google.com/file/d/1Td9YgoA51rxJec3P6beNpPphOU650Jed/view" target="_blank" title="Clique para assistir o vídeo">
-                <img src="1751821487103.jpg" alt="FEIRA DE CIÊNCIAS" class="video-thumbnail" />
-            </a>
-        </div>
-    </section>
+            <svg class="esquema" viewBox="0 0 420 296" role="img"
+                aria-label="Esquema desenhado à mão: a trajetória em parábola de um foguete de garrafa PET, com os vetores de velocidade.">
+                <defs>
+                    <filter id="tremido" x="-5%" y="-5%" width="110%" height="110%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" />
+                        <feDisplacementMap in="SourceGraphic" scale="2.6" />
+                    </filter>
+                </defs>
 
+                <g class="tinta" filter="url(#tremido)">
+                    <path class="traco" pathLength="1" d="M40 262 L404 262" />
+                    <path class="traco" pathLength="1" d="M396 256 L404 262 L396 268" />
+                    <path class="traco" pathLength="1" d="M40 262 L40 18" />
+                    <path class="traco" pathLength="1" d="M34 26 L40 18 L46 26" />
+
+                    <path class="traco trajetoria" pathLength="1" d="M40 262 Q200 -102 360 262" />
+
+                    <path class="surge guia" d="M200 84 L200 262" />
+                    <path class="traco fino" pathLength="1" style="--atraso: 1.5s" d="M70 262 A30 30 0 0 0 52 235" />
+
+                    <g class="vermelho">
+                        <path class="traco" pathLength="1" style="--atraso: 1.3s" d="M40 262 L71 191" />
+                        <path class="traco" pathLength="1" style="--atraso: 1.6s" d="M73 202 L71 191 L63 198" />
+                    </g>
+
+                    <g class="surge" transform="translate(136 109) rotate(-42.3)">
+                        <path class="fino" d="M-25 0 L-42 0 M-24 -3 L-37 -8 M-24 3 L-37 8" />
+                        <path class="garrafa"
+                            d="M-22 -3 L-16 -3 L-16 -7 L8 -7 Q18 -6 25 0 Q18 6 8 7 L-16 7 L-16 3 L-22 3 Z" />
+                        <path class="garrafa" d="M-16 -7 L-24 -14 L-8 -7 Z M-16 7 L-24 14 L-8 7 Z" />
+                        <path class="vermelho" d="M31 0 L66 0 M58 -5 L66 0 L58 5" />
+                    </g>
+                </g>
+
+                <g class="surge rotulos">
+                    <text x="409" y="258">x</text>
+                    <text x="48" y="24">y</text>
+                    <text x="84" y="222" class="vermelho">v₀</text>
+                    <text x="74" y="250">θ</text>
+                    <text x="192" y="56" class="vermelho">v</text>
+                    <text x="207" y="180">altura máxima</text>
+                    <text x="200" y="286" text-anchor="middle">alcance</text>
+                </g>
+            </svg>
+        </header>
+
+        <main>
+            <section aria-labelledby="titulo-aulas">
+                <h2 id="titulo-aulas">Aulas e experimentos</h2>
+                <noscript>
+                    <p class="aviso">Esta página precisa de JavaScript para mostrar as aulas. Ative-o no navegador e
+                        recarregue.</p>
+                </noscript>
+                <p class="aviso" id="aviso" hidden></p>
+                <ul class="galeria" id="galeria"></ul>
+            </section>
+        </main>
+
+        <footer class="rodape">
+            <h2>Contato</h2>
+            <p id="contato"></p>
+        </footer>
+    </div>
 </body>
 
 </html>
