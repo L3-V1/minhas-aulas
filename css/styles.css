@@ -66,9 +66,13 @@ a:focus-visible {
 
 .pagina {
     position: relative;
-    max-width: 72rem;
-    margin-inline: auto;
     padding: 0 1rem calc(var(--q) * 2);
+}
+
+/* a folha ocupa a tela toda; só o conteúdo fica centralizado */
+.pagina > * {
+    max-width: 70rem;
+    margin-inline: auto;
 }
 
 .so-leitor {
@@ -576,9 +580,13 @@ h2::after {
         opacity: 0.7;
     }
 
+    .pagina > * {
+        max-width: 61.5rem;
+    }
+
     .menu {
-        /* acompanha a borda esquerda do conteúdo centralizado */
-        padding-left: calc(max(0px, (100% - 72rem) / 2) + var(--q) * 5);
+        /* começa logo depois da linha de margem */
+        padding-left: calc(var(--q) * 5);
     }
 
     .menu ul {
