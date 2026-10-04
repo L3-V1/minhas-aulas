@@ -67,6 +67,7 @@ a:focus-visible {
 .pagina {
     position: relative;
     max-width: 72rem;
+    margin-inline: auto;
     padding: 0 1rem calc(var(--q) * 2);
 }
 
@@ -576,7 +577,8 @@ h2::after {
     }
 
     .menu {
-        padding-left: calc(var(--q) * 5);
+        /* acompanha a borda esquerda do conteúdo centralizado */
+        padding-left: calc(max(0px, (100% - 72rem) / 2) + var(--q) * 5);
     }
 
     .menu ul {
