@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
-        content="Aulas e experimentos de Física do professor Sidnei Ribeiro de Moraes, da E. E. Prof. Primo Ferreira.">
+        content="Aulas e experimentos de Física do professor Sidnei Ribeiro de Moraes, da E. E. Prof. Primo Ferreira: quem ele é, como trabalha, os vídeos das aulas e como entrar em contato.">
     <link rel="icon" href="data:,">
     <title>Sidnei Ribeiro de Moraes: aulas de Física</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,13 +19,26 @@
 </head>
 
 <body>
+    <nav class="menu" aria-label="Seções">
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#aulas">Aulas</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
     <div class="pagina">
-        <header class="capa">
+        <header class="capa" id="inicio">
             <div class="capa-texto">
                 <div id="retrato"></div>
                 <h1 id="nome"></h1>
                 <p class="anotacao" id="escola"></p>
                 <p class="apresentacao" id="apresentacao"></p>
+                <p class="capa-acoes">
+                    <a class="botao" href="#aulas">Ver as aulas ↓</a>
+                    <a class="capa-sobre" href="#sobre">Sobre o professor</a>
+                </p>
             </div>
 
             <svg class="esquema" viewBox="0 0 420 296" role="img"
@@ -75,20 +88,34 @@
         </header>
 
         <main>
-            <section aria-labelledby="titulo-aulas">
-                <h2 id="titulo-aulas">Aulas e experimentos</h2>
+            <section class="secao sobre" id="sobre" aria-labelledby="titulo-sobre">
+                <h2 id="titulo-sobre">Sobre</h2>
+                <div class="sobre-texto" id="sobre-texto"></div>
+                <h3 class="subtitulo" id="titulo-como-trabalho">Como eu trabalho</h3>
+                <ol class="como-trabalho" id="como-trabalho" aria-labelledby="titulo-como-trabalho"></ol>
+            </section>
+
+            <section class="secao" id="aulas" aria-labelledby="titulo-aulas">
+                <h2 id="titulo-aulas">Aulas</h2>
                 <noscript>
                     <p class="aviso">Esta página precisa de JavaScript para mostrar as aulas. Ative-o no navegador e
                         recarregue.</p>
                 </noscript>
                 <p class="aviso" id="aviso" hidden></p>
+                <div class="destaque" id="destaque"></div>
                 <ul class="galeria" id="galeria"></ul>
+            </section>
+
+            <section class="secao contato" id="contato" aria-labelledby="titulo-contato">
+                <h2 id="titulo-contato">Contato</h2>
+                <p class="chamada-contato" id="chamada-contato"></p>
+                <p id="contato-botao"></p>
+                <p class="contato-escola" id="contato-escola"></p>
             </section>
         </main>
 
         <footer class="rodape">
-            <h2>Contato</h2>
-            <p id="contato"></p>
+            <a href="#inicio">Voltar ao início ↑</a>
         </footer>
     </div>
 </body>

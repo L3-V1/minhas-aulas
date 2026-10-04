@@ -34,7 +34,19 @@ Tudo pode ser feito pelo site do GitHub, sem instalar nada.
    No Google Drive, o vídeo precisa estar compartilhado como "Qualquer pessoa com o link".
 5. **Salve** em **Commit changes**. O site se atualiza sozinho em um ou dois minutos.
 
-Para mudar o texto de apresentação, o e-mail ou incluir uma foto sua, edite o bloco `PROFESSOR` no mesmo arquivo.
+A **última aula da lista** aparece em destaque, maior e com a foto ao lado do texto. Por isso, coloque sempre a aula nova no fim.
+
+## Como mudar os outros textos
+
+Todos ficam no bloco `PROFESSOR`, no mesmo arquivo `dados/aulas.js`:
+
+- `apresentacao`: a frase da capa.
+- `sobre`: os parágrafos da seção Sobre, um texto entre aspas para cada parágrafo.
+- `comoTrabalho`: as três notas de "Como eu trabalho", cada uma com `titulo` e `texto`.
+- `chamadaContato`: o convite que aparece na seção Contato.
+- `email` e `foto`: o e-mail do botão de contato e, se quiser, uma foto sua.
+
+Os textos marcados com `// RASCUNHO` foram escritos como ponto de partida: revise antes de publicar. Se apagar um desses campos, a parte correspondente simplesmente some da página.
 
 ## Se algo der errado
 

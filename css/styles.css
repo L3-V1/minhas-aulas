@@ -11,12 +11,26 @@
 
     /* lado de um quadradinho; a entrelinha do texto acompanha */
     --q: 1.5rem;
+    /* altura da barra de menu */
+    --menu: calc(var(--q) * 2.5);
+    /* cantos de traço à mão, usados nos botões */
+    --cantos-caneta: 255px 18px 225px 18px / 18px 225px 18px 255px;
 }
 
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+}
+
+html {
+    scroll-padding-top: var(--menu);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
 body {
@@ -35,6 +49,7 @@ body {
 h1,
 h2,
 h3,
+h4,
 p {
     margin: 0;
 }
@@ -52,7 +67,7 @@ a:focus-visible {
 .pagina {
     position: relative;
     max-width: 72rem;
-    padding: calc(var(--q) * 2) 1rem calc(var(--q) * 3);
+    padding: 0 1rem calc(var(--q) * 2);
 }
 
 .so-leitor {
@@ -64,12 +79,89 @@ a:focus-visible {
     white-space: nowrap;
 }
 
+/* Menu */
+
+.menu {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    height: var(--menu);
+    padding: 0 1rem;
+    background: rgb(251 252 248 / 0.96);
+    border-bottom: 2px solid var(--vermelho);
+}
+
+.menu ul {
+    display: flex;
+    gap: 0.9rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* grifo de marca-texto que cresce da esquerda para a direita */
+.menu a,
+.aula-titulo span {
+    background: linear-gradient(var(--marca-texto), var(--marca-texto)) no-repeat 0 85% / 0% 55%;
+    transition: background-size 0.25s ease-out;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+.menu a {
+    padding: 0 0.15em;
+    font-family: var(--manuscrita);
+    font-size: 1.1875rem;
+    text-decoration: none;
+}
+
+.menu a:hover,
+.menu a[aria-current="true"] {
+    background-size: 100% 55%;
+}
+
+.menu a[aria-current="true"] {
+    font-weight: 700;
+}
+
+/* Botão de traço à mão */
+
+.botao {
+    display: inline-block;
+    padding: calc(var(--q) / 4) 1.1rem;
+    font-family: var(--manuscrita);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: calc(var(--q) * 1.25);
+    text-decoration: none;
+    background: var(--papel);
+    border: 2px solid var(--tinta);
+    border-radius: var(--cantos-caneta);
+    rotate: -1deg;
+    transition: rotate 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.botao:hover,
+.botao:focus-visible {
+    background: var(--marca-texto);
+    rotate: 0deg;
+}
+
+.botao:focus-visible {
+    border-radius: var(--cantos-caneta);
+}
+
 /* Capa */
 
 .capa {
     display: grid;
     gap: var(--q);
     align-items: center;
+    align-content: center;
+    min-height: calc(100svh - var(--menu));
+    padding-block: calc(var(--q) * 2);
 }
 
 h1 {
@@ -91,6 +183,26 @@ h1 {
 .apresentacao {
     margin-top: var(--q);
     max-width: 34rem;
+}
+
+.capa-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--q) 1.5rem;
+    margin-top: calc(var(--q) * 1.5);
+}
+
+.capa-sobre {
+    font-family: var(--manuscrita);
+    font-size: 1.1875rem;
+    color: var(--vermelho);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
+}
+
+.capa-sobre:hover {
+    background: var(--marca-texto);
 }
 
 .retrato {
@@ -188,16 +300,38 @@ h1 {
     }
 }
 
-/* Galeria */
+/* Seções */
+
+.secao {
+    margin-top: calc(var(--q) * 4);
+}
 
 h2 {
+    position: relative;
     font-family: var(--manuscrita);
     font-size: 2rem;
     line-height: calc(var(--q) * 2);
 }
 
-main {
-    margin-top: calc(var(--q) * 3);
+/* traço de caneta vermelha sob o título, como abertura de capítulo */
+h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.1rem;
+    width: 4.5rem;
+    height: 3px;
+    background: var(--vermelho);
+    border-radius: 60% 40% 50% 45% / 100%;
+    rotate: -1.5deg;
+}
+
+.subtitulo {
+    margin-top: calc(var(--q) * 2);
+    font-family: var(--manuscrita);
+    font-size: 1.5rem;
+    line-height: calc(var(--q) * 1.5);
+    color: var(--vermelho);
 }
 
 .aviso {
@@ -205,12 +339,74 @@ main {
     max-width: 34rem;
 }
 
+/* Sobre */
+
+.sobre-texto {
+    max-width: 34rem;
+    margin-top: calc(var(--q) * 1.5);
+}
+
+.sobre-texto p + p {
+    margin-top: var(--q);
+}
+
+.como-trabalho {
+    display: grid;
+    gap: calc(var(--q) * 1.5) calc(var(--q) * 2);
+    margin: var(--q) 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: nota;
+}
+
+.como-trabalho li {
+    position: relative;
+    max-width: 34rem;
+    padding-left: 3rem;
+    counter-increment: nota;
+}
+
+/* número da nota circulado à caneta */
+.como-trabalho li::before {
+    content: counter(nota);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2.1rem;
+    height: 2.1rem;
+    font-family: var(--manuscrita);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 2rem;
+    text-align: center;
+    color: var(--vermelho);
+    border: 2px solid var(--vermelho);
+    border-radius: 52% 46% 55% 44% / 48% 55% 45% 52%;
+    rotate: -6deg;
+}
+
+.como-trabalho h4 {
+    font-family: var(--manuscrita);
+    font-size: 1.3125rem;
+    line-height: var(--q);
+}
+
+.como-trabalho p {
+    margin-top: calc(var(--q) / 4);
+}
+
+/* Aulas */
+
+.destaque {
+    margin-top: calc(var(--q) * 2.5);
+}
+
 .galeria {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
     gap: calc(var(--q) * 2.5) calc(var(--q) * 2);
     align-items: start;
-    margin: calc(var(--q) * 2) 0 0;
+    margin: calc(var(--q) * 3) 0 0;
     padding: 0;
     list-style: none;
 }
@@ -271,13 +467,6 @@ main {
     line-height: calc(var(--q) * 1.25);
 }
 
-.aula-titulo span {
-    background: linear-gradient(var(--marca-texto), var(--marca-texto)) no-repeat 0 85% / 0% 55%;
-    transition: background-size 0.25s ease-out;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-}
-
 .aula-descricao {
     margin-top: calc(var(--q) / 4);
 }
@@ -291,6 +480,25 @@ main {
     text-decoration: underline;
     text-decoration-thickness: 1.5px;
     text-underline-offset: 0.2em;
+}
+
+/* A aula mais recente: maior e quase sem inclinação */
+.aula--destaque .aula-link {
+    rotate: -0.4deg;
+}
+
+.aula--destaque .aula-foto img {
+    max-height: 32rem;
+}
+
+.aula--destaque .anotacao {
+    margin-top: var(--q);
+}
+
+.aula--destaque .aula-titulo {
+    margin-top: calc(var(--q) / 2);
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    line-height: calc(var(--q) * 2);
 }
 
 .aula-link:hover,
@@ -307,27 +515,32 @@ main {
 
 /* Contato */
 
-.rodape {
-    margin-top: calc(var(--q) * 4);
+.contato {
+    max-width: 40rem;
     padding-top: var(--q);
     border-top: 2px solid var(--vermelho);
-    max-width: 34rem;
 }
 
-.rodape h2 {
-    font-size: 1.5rem;
-    line-height: var(--q);
-}
-
-.rodape p {
-    margin-top: calc(var(--q) / 2);
+.contato p {
+    margin-top: calc(var(--q) * 1.5);
     overflow-wrap: anywhere;
 }
 
+.botao--grande {
+    padding: calc(var(--q) / 2) 1.4rem;
+    font-size: clamp(1.25rem, 5vw, 1.625rem);
+    line-height: calc(var(--q) * 1.5);
+}
+
+/* Rodapé */
+
+.rodape {
+    margin-top: calc(var(--q) * 3);
+    font-family: var(--manuscrita);
+}
+
 .rodape a {
-    font-weight: 700;
     text-decoration-color: var(--vermelho);
-    text-decoration-thickness: 2px;
     text-underline-offset: 0.2em;
 }
 
@@ -338,15 +551,17 @@ main {
 @media (prefers-reduced-motion: reduce) {
 
     .aula-link,
-    .aula-titulo span {
+    .aula-titulo span,
+    .menu a,
+    .botao {
         transition: none;
     }
 }
 
-/* Telas largas: linha de margem vermelha e capa em duas colunas */
+/* Telas largas: linha de margem vermelha, capa e destaque em duas colunas */
 @media (min-width: 48rem) {
     .pagina {
-        padding: calc(var(--q) * 3) calc(var(--q) * 2) calc(var(--q) * 4) calc(var(--q) * 5);
+        padding: 0 calc(var(--q) * 2) calc(var(--q) * 3) calc(var(--q) * 5);
     }
 
     .pagina::before {
@@ -360,8 +575,35 @@ main {
         opacity: 0.7;
     }
 
+    .menu {
+        padding-left: calc(var(--q) * 5);
+    }
+
+    .menu ul {
+        gap: 1.75rem;
+    }
+
+    .menu a {
+        font-size: 1.3125rem;
+    }
+
     .capa {
         grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
         gap: calc(var(--q) * 2);
+    }
+
+    .como-trabalho {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .aula--destaque .aula-link {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+        gap: calc(var(--q) * 2);
+        align-items: center;
+    }
+
+    .aula--destaque .aula-texto > :first-child {
+        margin-top: 0;
     }
 }

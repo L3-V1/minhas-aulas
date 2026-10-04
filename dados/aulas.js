@@ -8,6 +8,9 @@
     3. Troque os quatro campos: titulo, descricao, imagem e video.
     4. Salve.
 
+  Os textos das seções Sobre e Contato ficam no bloco PROFESSOR, logo abaixo:
+  sobre, comoTrabalho e chamadaContato.
+
   Cuidados: cada texto fica entre aspas "assim" e cada linha termina com vírgula.
   O passo a passo completo está no README.md.
 */
@@ -20,6 +23,22 @@ const PROFESSOR = {
   apresentacao: "Aqui reúno vídeos de aulas e experimentos feitos com os alunos, quase sempre com material simples e fácil de encontrar.",
   foto: "", // opcional: caminho de uma foto, por exemplo "img/professor.jpg". Vazio = sem foto.
   email: "sidlevi61@gmail.com",
+
+  // Um item por parágrafo
+  sobre: [
+    "Dou aulas de Física na E. E. Prof. Primo Ferreira. Aqui estão algumas das atividades que fiz com os alunos, registradas em vídeo.",
+    "Foguetes de garrafa PET, a fonte de Heron, um painel óptico sobre os defeitos da visão e um guindaste controlado por Arduino: em cada uma, o conteúdo visto em sala vira algo que os alunos montam e testam.",
+  ],
+
+  // As notas de "Como eu trabalho", cada uma com titulo e texto
+  comoTrabalho: [
+    { titulo: "Material de baixo custo", texto: "Garrafa PET, tubos de PVC e mangueira bastam para muitos experimentos. Qualquer escola consegue repetir." },
+    { titulo: "Mão na massa", texto: "Os alunos montam, testam e ajustam. Quando algo não sai na primeira tentativa, isso também vira aula." },
+    { titulo: "Ciência para mostrar", texto: "Os trabalhos vão para feiras de ciências e seminários, onde os próprios alunos explicam o que fizeram." },
+  ],
+
+  // RASCUNHO: convite a escolas e professores
+  chamadaContato: "Quer levar um destes experimentos para a sua escola ou trocar ideias sobre uma aula? Escolas, professores e estudantes podem escrever.",
 };
 
 const AULAS = [
